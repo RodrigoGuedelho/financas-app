@@ -1,0 +1,38 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+{{/each}}
+
+<h3>Nova Conta</h3>
+<div class="card">
+    <div class="card-body">
+        <form action="/contas/novo" method="POST">
+            <label for="descricao">Descrição:</label>
+            <Input type="text" id="descricao" name="descricao" placeholder="Descrição da conta" 
+                class="form-control" required>
+            
+            <label for="vencimento">Vencimento:</label>
+            <Input type="date" id="vencimento" name="venvimento" class="form-control" required> 
+
+            <label for="valor">Valor:</label>
+            <Input type="text" id="valor" name="valor" class="form-control" required
+                placeholder="Valor da conta" >
+
+            <label for="grupoConta">Grupo de Conta:</label>
+            <select name="grupoConta" class="custom-select">
+                {{#each gruposContas}}
+                <option value="{{_id}}">{{descricao}}</option>
+                {{else}}
+                <option value="">Nenhum grupo cadastrado</option>
+                {{/each}}
+            </select>
+
+            <label for="status">Status:</label>
+            <select name="status" class="custom-select">     
+                <option value="ABERTO">Aberto</option>
+                <option value="QUITADO">Quitado</option>
+            </select>
+            <button type="submit" class="btn btn-success mt-3">Salvar</button>
+        </form>
+    </div>
+</div>

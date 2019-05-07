@@ -1,0 +1,67 @@
+
+
+  <h1>Lista de Contas</h1>
+
+  <a class="btn btn-success mt-2" href="/contas/novo">Novo</a>
+  <div class="table-responsive">
+    <table class="table table-bordered mt-2">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Vencimento</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Grupo de Contas</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each contas}}
+        <tr>
+          <th scope="row">{{id}}</th>
+          <td>{{descricao}}</td>
+          <td>{{vencimento}}</td>      
+          <td>{{valor}}</td>  
+          <td>{{grupoConta.descricao}}</td>  
+          <td>{{grupoConta.tipo}}</td> 
+          <td>
+            <center>   
+                
+              <a class="btn btn-success" href="/grupos-contas/editar/{{id}}">Editar</a>
+              <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#excluirModal">Excluir</button>    
+
+              <!-- Modal referente ao cancelar -->  
+              <form action="/grupos-contas/deletar" method="POST">
+                <div class="modal fade" id="excluirModal" tabindex="-1" role="dialog" aria-labelledby="excluirModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Finanças App Informa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h5>Tem certeza que deseja exlcuir o grupo de conta?</h5>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="hidden" id="id" name="id" value="{{id}}"/>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                        <button  class="btn btn-success" type="submit">Sim</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </form> 
+              <!-- end Modal referente ao cancelar -->     
+            </center>
+          </td>
+        </tr>
+
+        {{else}}
+            <tr><td  colspan="7" >Nenhum grupo cadastrado.</tr></td>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
