@@ -20,7 +20,7 @@ const GrupoConta = new Schema({
 		type: Schema.Types.ObjectId,
         ref: "usuarios",
         require: true
-    },
+    }
 })
 
 mongoose.model("grupos_contas", GrupoConta);

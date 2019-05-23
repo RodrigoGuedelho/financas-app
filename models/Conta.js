@@ -33,7 +33,13 @@ const Conta = new Schema({
     status:{
 		type: String,
 		require: true,
-	}
+	},
+	usuario:{
+		type: Schema.Types.ObjectId,
+        ref: "usuarios",
+        require: true
+    }
+
 })
 
 mongoose.model("contas", Conta);
